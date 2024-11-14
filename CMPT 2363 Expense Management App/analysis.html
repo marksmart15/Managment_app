@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/8c05a5c68f.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Management App</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .app {
+            width: 400px;
+            height: 700px;
+            /*roughly the dimensions of a phone*/
+            background-color: rgb(92, 91, 91);
+            border: 20px solid rgb(49, 49, 49);
+            border-radius: 15px;
+            color: rgb(223, 223, 223);
+            overflow-y: auto; /*just in case we need scrolling*/
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class = "app"> 
+            <table style="border: 0px solid;" >
+                <tr align="center">
+                    <th width = "1">
+                        <a href="home.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-user"></i></a>
+                    </th>
+                    <th width ="10" style="background-color: rgb(67, 67, 67); border-radius: 10px;"><a href = "analysis.html" style="text-decoration: none; color: rgb(223, 223, 223);">Analysis</a></th>
+                    <th width ="10"><a href = "activity.html" style="text-decoration: none; color: rgb(223, 223, 223);">Activity</a></th>
+                    <th width = "1">
+                        <a href = "settings.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-gear"></i></a>
+                    </th>
+                </tr>
+            </table>
+            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam voluptatibus eos, hic vel eius! Consequuntur esse aspernatur temporibus quo ad corporis debitis molestias porro? Eum commodi officiis distinctio quod!</h1>
+            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum soluta nihil mollitia, neque harum laudantium commodi, consequuntur sit cumque error, amet optio aliquam. Voluptate quas dolores accusantium hic molestiae quasi.</h1>
+        </div>
+    </main>
+</body>
+</html>
