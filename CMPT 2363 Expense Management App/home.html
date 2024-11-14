@@ -28,24 +28,114 @@
             display: flex;
             flex-direction: column;
         }
+        h1{
+            text-align: left;
+            padding: 5px;
+        }
+        textarea{
+            background-color: transparent;
+            border: none;
+            color: rgb(223, 223, 223);
+            font-size: 20px;
+            overflow: hidden; /*no scroll bar*/
+            resize: none;
+        }
+        label{
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class = "app"> 
-        <table style="border: 0px solid;" >
-            <tr align="center">
-                <th width = "1" style="background-color: rgb(67, 67, 67); border-radius: 10px;">
-                    <i class="fa-solid fa-user"></i>
-                </th>
-                <th width ="10"><a href = "analysis.html">Analysis</a></th>
-                <th width ="10">Activity</th>
-                <th width = "1">
-                    <i class="fa-solid fa-gear"></i>
-                </th>
-            </tr>
-        </table>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam voluptatibus eos, hic vel eius! Consequuntur esse aspernatur temporibus quo ad corporis debitis molestias porro? Eum commodi officiis distinctio quod!</h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum soluta nihil mollitia, neque harum laudantium commodi, consequuntur sit cumque error, amet optio aliquam. Voluptate quas dolores accusantium hic molestiae quasi.</h1>
-    </div>
+    <main>
+        <div class = "app"> 
+            <table style="border: 0px solid;" >
+                <tr align="center">
+                    <th width = "1" style="background-color: rgb(67, 67, 67); border-radius: 10px;">
+                        <a href="home.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-user"></i></a>
+                    </th>
+                    <th width ="10"><a href = "analysis.html" style="text-decoration: none; color: rgb(223, 223, 223);">Analysis</a></th>
+                    <th width ="10"><a href = "activity.html" style="text-decoration: none; color: rgb(223, 223, 223);">Activity</a></th>
+                    <th width = "1">
+                        <a href = "settings.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-gear"></i></a>
+                    </th>
+                </tr>
+            </table>
+
+            <h1><u>Accounts</u></h1>
+                <label for="accounts">accounts</label>
+                <textarea id="Accounts" name="accounts"></textarea>
+            <h1><u>Cards</u></h1>
+                <label for="cards">cards</label>
+                <textarea id="Cards" name="cards"></textarea>
+            <h1><u>Debit Cards</u></h1>
+                <label for="debitCards">debit cards</label>
+                <textarea id="DebitCards" name="debitCards"></textarea>
+            <h1><u>Investments</u></h1>
+                <label for="investments">investments</label>
+                <textarea id="Investments" name="investments"></textarea>
+
+            <table style="border: 0px solid;">
+                <tr>
+                    <th width = "1" style="background-color: rgb(173, 173, 173); border-radius: 20px">
+                        <i class="fa-solid fa-plus" style="color: aliceblue;"></i>
+                    </th>
+                    <th width = "100"></th>
+                </tr>
+            </table>
+            
+        </div>
+        <script>
+            function getHomeInfo() {
+                accountNames = ["RBC-Chequing(4624)", "RBC-Savings(3963)"];
+                accountBalances = [333.45, 9750.01];
+                cardNames = ["RBC ION VISA"];
+                cardBalances = [37.55];
+                debitCardNames = ["RBC Debit Card"];
+                investmentNames = []
+
+                const accountText = accountNames
+                    .map((name, index) => `• ${name}, $${accountBalances[index]}`)
+                    .join('\n');   
+                
+                const cardText = cardNames
+                    .map((name, index) => `• ${name}, $${accountBalances[index]}`)
+                    .join('\n');  
+                
+                const debitCardText = debitCardNames
+                    .map(name => `• ${name}`)
+                    .join('\n');
+                
+                const investmentText = investmentNames
+                    .map(name => `• ${name}`)
+                    .join('\n');  
+                
+                
+                textarea = document.getElementById('Accounts');
+                textarea.value = accountText
+                resizeTextarea(textarea)
+                
+                textarea = document.getElementById('Cards');
+                textarea.value = cardText
+                resizeTextarea(textarea)
+
+                textarea = document.getElementById('DebitCards');
+                textarea.value = debitCardText
+                resizeTextarea(textarea)
+
+                textarea = document.getElementById('Investments');
+                textarea.value = investmentText
+                resizeTextarea(textarea)
+            }
+
+            /*function to resize textareas if there is too much text*/
+            function resizeTextarea(textarea) {
+                textarea.style.height = 'auto';
+                textarea.style.height = textarea.scrollHeight + 'px'; /*set to scroll height*/
+            }
+
+            /*calls the function to populate all textareas with info*/
+            getHomeInfo();
+        </script>
+    </main>
 </body>
 </html>
