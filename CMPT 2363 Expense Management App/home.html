@@ -17,6 +17,7 @@
         }
 
         .app {
+            position: relative;
             width: 400px;
             height: 700px;
             /*roughly the dimensions of a phone*/
@@ -31,6 +32,7 @@
         h1{
             text-align: left;
             padding: 5px;
+            box-shadow: 0px 4px 5px rgba(0,0,0,0.1);
         }
         textarea{
             background-color: transparent;
@@ -42,6 +44,46 @@
         }
         label{
             display: none;
+        }
+        #plusButton{
+            height: 80px;
+            width: 80px;
+            border-radius: 40px;
+            background-color: rgb(132, 132, 132);
+            box-shadow: 0px 4px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center; /* justify and align items to center so the plus is in the center*/
+            position: absolute; /* will stay in the position no matter what */
+            bottom: 25px;
+            right: 25px;
+            cursor: pointer;
+        }
+        #dropDownMenu{
+            display: none;
+            position: absolute;
+            bottom: 50px;
+            right:0%;
+            background-color: rgb(223, 223, 223);
+            border-radius: 10px;
+            box-shadow: 0px 4px 5px rgba(0,0,0,0.1);
+            padding: 10px;
+            list-style:none;
+            text-align: center;
+            width: 150px;
+            height: 200px;
+        }
+        #dropDownMenu li {
+            padding: 25px;
+            color: rgb(92, 91, 91);
+            font-size: 15px;
+            cursor: pointer;
+        }
+        #dropDownMenu li:hover{
+            background-color: rgb(200,200,200);
+        }
+        .dropdown-active #dropDownMenu {
+            display: block;
         }
     </style>
 </head>
@@ -74,16 +116,31 @@
                 <label for="investments">investments</label>
                 <textarea id="Investments" name="investments"></textarea>
 
-            <table style="border: 0px solid;">
-                <tr>
-                    <th width = "1" style="background-color: rgb(173, 173, 173); border-radius: 20px">
-                        <i class="fa-solid fa-plus" style="color: aliceblue;"></i>
-                    </th>
-                    <th width = "100"></th>
-                </tr>
-            </table>
             
+            <div id = "plusButton" style="align-items: right; z-index: 1;">
+                <i class="fa-solid fa-plus fa-3x"></i>     
+                <ul id = "dropDownMenu" style="z-index: 0;">
+                    <li class="popup" onclick="popup()">Add Account</li>
+                    <li>Add Card </li>
+                    <li>Add Investment</li>
+                </ul>
+            </div>   
         </div>
+        <script>
+            const plusButton = document.getElementById('plusButton');
+
+            /*if user clicks the plus button the dropdown-active class activates*/
+            plusButton.addEventListener('click', () => {
+                plusButton.classList.toggle('dropdown-active');
+            })
+
+            /*if user clicks off of the table the dropdown-active class deactivates*/
+            document.addEventListener('click', (event) => {
+                if(!plusButton.contains(event.target)) {
+                    plusButton.classList.remove('dropdown-active');
+                }
+            })
+        </script>
         <script>
             function getHomeInfo() {
                 accountNames = ["RBC-Chequing(4624)", "RBC-Savings(3963)"];
