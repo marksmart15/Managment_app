@@ -67,11 +67,11 @@
             background-color: rgb(223, 223, 223);
             border-radius: 10px;
             box-shadow: 0px 4px 5px rgba(0,0,0,0.1);
-            padding: 10px;
+            padding: 18px;
             list-style:none;
             text-align: center;
             width: 150px;
-            height: 200px;
+            height: 150px;
         }
         #dropDownMenu li {
             padding: 25px;
@@ -84,6 +84,23 @@
         }
         .dropdown-active #dropDownMenu {
             display: block;
+        }
+        .addInfo {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 300px;
+            z-index: 10;
+            background-color: rgb(223, 223, 223);
+            color: rgb(92, 91, 91);
+            border-radius: 10px;
+            box-shadow: 0px 4px 5px rgba(0,0,0,0.1);
+            padding: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
         }
     </style>
 </head>
@@ -117,29 +134,33 @@
                 <textarea id="Investments" name="investments"></textarea>
 
             
-            <div id = "plusButton" style="align-items: right; z-index: 1;">
+            <div id = "plusButton" style="align-items: right;">
                 <i class="fa-solid fa-plus fa-3x"></i>     
-                <ul id = "dropDownMenu" style="z-index: 0;">
-                    <li class="popup" onclick="popup()">Add Account</li>
-                    <li>Add Card </li>
-                    <li>Add Investment</li>
+                <ul id = "dropDownMenu">
+                    <a href="homeAddAccount.html" style="text-decoration: none;"><li id="addAccountButton">Add Account</li></a>
+                    <a href="homeAddCard.html" style="text-decoration: none;"><li id="addCardButton">Add Card</li></a>
                 </ul>
             </div>   
+
+            <div id="addAccount" class = "addInfo">
+            </div>
+            <div id="addCard" class = "addInfo">
+            </div>
         </div>
         <script>
             const plusButton = document.getElementById('plusButton');
 
             /*if user clicks the plus button the dropdown-active class activates*/
-            plusButton.addEventListener('click', () => {
+            plusButton.addEventListener('click', (event) => {
                 plusButton.classList.toggle('dropdown-active');
             })
 
             /*if user clicks off of the table the dropdown-active class deactivates*/
             document.addEventListener('click', (event) => {
-                if(!plusButton.contains(event.target)) {
+                if (!plusButton.contains(event.target) && !event.target.closest('#dropDownMenu')) {
                     plusButton.classList.remove('dropdown-active');
                 }
-            })
+            });
         </script>
         <script>
             function getHomeInfo() {
