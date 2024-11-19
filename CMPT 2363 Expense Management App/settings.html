@@ -4,7 +4,7 @@
     <script src="https://kit.fontawesome.com/8c05a5c68f.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Management App</title>
+    <title>Expense Management App - Settings</title>
     <style>
         body, html {
             margin: 0;
@@ -19,35 +19,270 @@
         .app {
             width: 400px;
             height: 700px;
-            /*roughly the dimensions of a phone*/
             background-color: rgb(92, 91, 91);
             border: 20px solid rgb(49, 49, 49);
             border-radius: 15px;
             color: rgb(223, 223, 223);
-            overflow-y: auto; /*just in case we need scrolling*/
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: rgb(223, 223, 223);
+        }
+
+        h3 {
+            cursor: pointer;
+            font-size: 20px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        .setting-group {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider::before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider::before {
+            transform: translateX(14px);
+        }
+
+        select, button {
+            background-color: rgb(67, 67, 67);
+            color: rgb(223, 223, 223);
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .app::-webkit-scrollbar-track {
+            background: rgb(67, 67, 67);
+        }
+
+        .app::-webkit-scrollbar-thumb {
+            background-color: rgb(92, 91, 91);
+            border-radius: 10px;
+            border: 2px solid rgb(67, 67, 67);
         }
     </style>
 </head>
 <body>
     <main>
-        <div class = "app"> 
-            <table style="border: 0px solid;" >
+        <div class="app">
+            <table style="border: 0px solid;">
                 <tr align="center">
-                    <th width = "1">
+                    <th width="1">
                         <a href="home.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-user"></i></a>
                     </th>
-                    <th width ="10"><a href = "analysis.html" style="text-decoration: none; color: rgb(223, 223, 223);">Analysis</a></th>
-                    <th width ="10"><a href = "activity.html" style="text-decoration: none; color: rgb(223, 223, 223);">Activity</a></th>
-                    <th width = "1" style="background-color: rgb(67, 67, 67); border-radius: 10px;">
-                        <a href = "settings.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-gear"></i></a>
+                    <th width="10">
+                        <a href="analysis.html" style="text-decoration: none; color: rgb(223, 223, 223);">Analysis</a>
+                    </th>
+                    <th width="10">
+                        <a href="activity.html" style="text-decoration: none; color: rgb(223, 223, 223);">Activity</a>
+                    </th>
+                    <th width="1" style="background-color: rgb(67, 67, 67); border-radius: 10px;">
+                        <a href="settings.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-gear"></i></a>
                     </th>
                 </tr>
             </table>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam voluptatibus eos, hic vel eius! Consequuntur esse aspernatur temporibus quo ad corporis debitis molestias porro? Eum commodi officiis distinctio quod!</h1>
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum soluta nihil mollitia, neque harum laudantium commodi, consequuntur sit cumque error, amet optio aliquam. Voluptate quas dolores accusantium hic molestiae quasi.</h1>
+
+            <h2>Settings</h2>
+
+            <h3 onclick="toggleSection('preferences', this)">
+                Preferences
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </h3>
+            <div id="preferences" class="setting-group">
+                <div class="setting-item">
+                    <label for="feedback">Visual Feedback</label>
+                    <label class="switch">
+                        <input type="checkbox" id="feedback">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="currency">Main Currency</label>
+                    <select id="currency">
+                        <option value="gbp">CAD</option>
+                        <option value="usd">USD</option>
+                        <option value="eur">EUR</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="language">Language</label>
+                    <select id="language">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="Style">Style</label>
+                    <select id="Style">
+                        <option value="gbp">Dark</option>
+                        <option value="usd">Light</option>
+                        <option value="eur">System</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3 onclick="toggleSection('accessibility', this)">
+                Accessibility
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </h3>
+            <div id="accessibility" class="setting-group">
+                <div class="setting-item">
+                    <label for="textToSpeech">Text-to-Speech</label>
+                    <label class="switch">
+                        <input type="checkbox" id="textToSpeech">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="colorblind">Colorblind Settings</label>
+                    <button id="colorblind">Configure</button>
+                </div>
+            </div>
+
+            <h3 onclick="toggleSection('notifications', this)">
+                Notifications
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </h3>
+            <div id="notifications" class="setting-group">
+                <div class="setting-item">
+                    <label for="allNotifications">All Notifications</label>
+                    <label class="switch">
+                        <input type="checkbox" id="allNotifications">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="balanceNotifications">Balance Alerts</label>
+                    <label class="switch">
+                        <input type="checkbox" id="balanceNotifications">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="activityNotifications">Activity Alerts</label>
+                    <label class="switch">
+                        <input type="checkbox" id="activityNotifications">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="dayEndReview">Dad End Review</label>
+                    <label class="switch">
+                        <input type="checkbox" id="dayEndReview">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <h3 onclick="toggleSection('accounts', this)">
+                Accounts
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </h3>
+            <div id="accounts" class="setting-group">
+                <div class="setting-item">
+                    <label for="manageAccounts">Manage Accounts</label>
+                    <button id="manageAccounts">Manage</button>
+                </div>
+                <div class="setting-item">
+                    <label for="addAccount">Add Account</label>
+                    <button id="addAccount">Add</button>
+                </div>
+                <div class="setting-item">
+                    <label for="deleteAccount">Delete Account</label>
+                    <button id="deleteAccount">Delete</button>
+                </div>
+                <div class="setting-item">
+                    <label for="manageCards">Manage Cards</label>
+                    <button id="manageCards">Manage</button>
+                </div>
+            </div>
         </div>
     </main>
+
+    <script>
+        function toggleSection(sectionId, header) {
+            const section = document.getElementById(sectionId);
+            const arrow = header.querySelector('.arrow');
+
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                section.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
 </body>
 </html>
