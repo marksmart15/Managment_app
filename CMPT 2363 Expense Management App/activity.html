@@ -64,10 +64,10 @@
         </div>
         <script>
             function getActivityInfo() {
-                dates = ["2024/09/21", "2024/09/19", "2024/09/16", "2024/09/10", "2024/09/09"];
-                accounts = ["RBC(Chequing-0402)", "RBC-Savings(3963)", "RBC ION VISA", "RBC(Chequing-0402)", "RBC(Chequing-0402)"];
-                locations = ["Togo Sushi - New Westminister, BC", "RBC Mobile App", "Dollar Tree - New Westminister, BC", "Boston Pizza - Pitt Meadows, BC", "Cineplex - Pitt Meadows, BC"];
-                prices = [-16.78, 200.00, -10.09, -45.97, -31.34];
+                dates = ["2024/09/21", "2024/09/19", "2024/09/19", "2024/09/16", "2024/09/10", "2024/09/09"];
+                accounts = ["RBC(Chequing-0402)", "RBC-Savings(3963)", "RBC(Chequing-0402)", "RBC ION VISA", "RBC(Chequing-0402)", "RBC(Chequing-0402)"];
+                locations = ["Togo Sushi - New Westminister, BC", "RBC Mobile App", "RBC Mobile App", "Dollar Tree - New Westminister, BC", "Boston Pizza - Pitt Meadows, BC", "Cineplex - Pitt Meadows, BC"];
+                prices = [-16.78, 200.00, -200.00, -10.09, -45.97, -31.34];
 
                 const activityText = dates
                         .map((date, index) => `➤ ${date} ┃ ${accounts[index]}\n • ${locations[index]}\n • $${prices[index]}`)
