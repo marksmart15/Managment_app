@@ -19,35 +19,108 @@
         .app {
             width: 400px;
             height: 700px;
-            /*roughly the dimensions of a phone*/
             background-color: rgb(92, 91, 91);
             border: 20px solid rgb(49, 49, 49);
             border-radius: 15px;
             color: rgb(223, 223, 223);
-            overflow-y: auto; /*just in case we need scrolling*/
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
+            padding: 20px;
         }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+
+        .option {
+            padding: 5px 5px;
+            border: none;
+            background-color: rgb(67, 67, 67);
+            color: rgb(223, 223, 223);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .option.active {
+            background-color: rgb(223, 223, 223);
+            color: rgb(67, 67, 67);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+            
+        .app::-webkit-scrollbar {
+            width: 8px; 
+        }
+
+        .app::-webkit-scrollbar-track {
+            background: rgb(67, 67, 67); 
+        }
+
+        .app::-webkit-scrollbar-thumb {
+            background-color: rgb(92, 91, 91); 
+            border-radius: 10px; 
+            border: 2px solid rgb(67, 67, 67); 
+        }
+
     </style>
 </head>
 <body>
     <main>
-        <div class = "app"> 
-            <table style="border: 0px solid;" >
+        <div class="app">
+            <table style="border: 0px solid;">
                 <tr align="center">
-                    <th width = "1">
+                    <th width="1">
                         <a href="home.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-user"></i></a>
                     </th>
-                    <th width ="10" style="background-color: rgb(67, 67, 67); border-radius: 10px;"><a href = "analysis.html" style="text-decoration: none; color: rgb(223, 223, 223);">Analysis</a></th>
-                    <th width ="10"><a href = "activity.html" style="text-decoration: none; color: rgb(223, 223, 223);">Activity</a></th>
-                    <th width = "1">
-                        <a href = "settings.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-gear"></i></a>
+                    <th width="10" style="background-color: rgb(67, 67, 67); border-radius: 10px;">
+                        <a href="analysis.html" style="text-decoration: none; color: rgb(223, 223, 223);">Analysis</a>
+                    </th>
+                    <th width="10">
+                        <a href="activity.html" style="text-decoration: none; color: rgb(223, 223, 223);">Activity</a>
+                    </th>
+                    <th width="1">
+                        <a href="settings.html" style="text-decoration: none; color: rgb(223, 223, 223);"><i class="fa-solid fa-gear"></i></a>
                     </th>
                 </tr>
             </table>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam voluptatibus eos, hic vel eius! Consequuntur esse aspernatur temporibus quo ad corporis debitis molestias porro? Eum commodi officiis distinctio quod!</h1>
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum soluta nihil mollitia, neque harum laudantium commodi, consequuntur sit cumque error, amet optio aliquam. Voluptate quas dolores accusantium hic molestiae quasi.</h1>
+
+            <img src="spending.png" alt="Spending">
+
+            <div class="options">
+                <button class="option active">Daily</button>
+                <button class="option">Monthly</button>
+                <button class="option">Yearly</button>
+                <button class="option">All Time</button>
+            </div>
+
+            <img src="total.png" alt="Total">
+
+            <div class="options">
+                <button class="option">Daily</button>
+                <button class="option active">Monthly</button>
+                <button class="option">Yearly</button>
+                <button class="option">All Time</button>
+            </div>
         </div>
     </main>
+
+    <script>
+        // Add functionality to highlight the selected option
+        document.querySelectorAll('.options').forEach(group => {
+            group.addEventListener('click', (e) => {
+                if (e.target.classList.contains('option')) {
+                    group.querySelectorAll('.option').forEach(button => button.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
