@@ -28,6 +28,20 @@
             display: flex;
             flex-direction: column;
         }
+        textarea{
+            background-color: transparent;
+            border: none;
+            color: rgb(223, 223, 223);
+            font-size: 20px;
+            overflow: auto; 
+            height: auto;
+            resize: none;
+            padding-top: 20px;
+            line-height: 1.75;
+        }
+        label{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -45,9 +59,31 @@
                     </th>
                 </tr>
             </table>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam voluptatibus eos, hic vel eius! Consequuntur esse aspernatur temporibus quo ad corporis debitis molestias porro? Eum commodi officiis distinctio quod!</h1>
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum soluta nihil mollitia, neque harum laudantium commodi, consequuntur sit cumque error, amet optio aliquam. Voluptate quas dolores accusantium hic molestiae quasi.</h1>
+            <label for="activity">activity</label>
+            <textarea id="Activity" name="activity"></textarea>
         </div>
+        <script>
+            function getActivityInfo() {
+                dates = ["2024/09/21", "2024/09/19", "2024/09/26", "2024/09/10", "2024/09/09"];
+                accounts = ["RBC(Chequing-0402)", "RBC-Savings(3963)", "RBC ION VISA", "RBC(Chequing-0402)", "RBC(Chequing-0402)"];
+                locations = ["Togo Sushi - New Westminister, BC", " ", "Dollar Tree - New Westminister, BC", "Boston Pizza - Pitt Meadows, BC", "Cineplex - Pitt Meadows, BC"];
+                prices = [-16.78, 200.00, -10.09, -45.97, -31.34];
+
+                const activityText = dates
+                        .map((date, index) => `➤ ${date} | ${accounts[index]} | ${locations[index]} | $${prices[index]}`)
+                        .join('\n');
+                
+                activityTextArea = document.getElementById('Activity');
+                activityTextArea.value = activityText
+                resizeTextarea(activityTextArea);            
+            }
+
+            function resizeTextarea(textarea) {
+                textarea.style.height = textarea.scrollHeight + 'px'; /*set to scroll height*/
+            }
+
+            getActivityInfo();
+        </script>
     </main>
 </body>
 </html>
